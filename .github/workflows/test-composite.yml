@@ -1,0 +1,44 @@
+name: ReversingLabs rl-scanner-cloud testing
+run-name: rl-scanner-cloud-composite-testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  checkout-build-scan-action:
+    runs-on: ubuntu-latest
+
+    permissions:
+      statuses: write
+      pull-requests: write
+
+    steps:
+      # Need to check out data before we can do anything
+      - uses: actions/checkout@v3
+
+      # Replace this step with your build process.
+      # Need to produce one file as the build artifact in scanfile=<relative file path>.
+      - name: Create the build artifact
+        id: build
+        shell: bash
+        run: |
+          # Prepare the build process
+          python3 -m pip install --upgrade pip
+          pip install example
+          python3 -m pip install --upgrade build
+          # Run the build
+          python3 -m build
+          # Produce a single artifact to scan and set the scanfile output parameter
+          echo "scanfile=$( ls dist/*.whl )" >> $GITHUB_OUTPUT
+
+      # Use the rl-scanner-cloud-composite action
+      - name: Scan build artifact on the Portal
+        id: rl-scan
+        env:
+          RLPORTAL_ACCESS_TOKEN: ${{ secrets.RLPORTAL_ACCESS_TOKEN }}
+        uses: maarten-boot/test-gh-action-rl-scanner-cloud-composite-dev@v1.0.0
+        with:
+          artifact-to-scan: ${{ steps.build.outputs.scanfile }}
