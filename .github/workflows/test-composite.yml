@@ -46,7 +46,7 @@ jobs:
           rl-portal-org: ReversingLabs
           rl-portal-group: Demo
           rl-timeout: 20
-          rl-submit-only: false
+          rl-submit-only: true
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
-          rl-package-url: mboot/test-gh-action-only-dev@v999
+          rl-package-url: mboot/test-gh-action-only-dev@v998
           # rl-diff-with: v1.0.2
