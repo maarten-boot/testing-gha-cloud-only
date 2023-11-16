@@ -7,9 +7,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  ReportDirectory: MyReportDir
-
 jobs:
   checkout-build-scan-simple:
     # runs-on: self-hosted
