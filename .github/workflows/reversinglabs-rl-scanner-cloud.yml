@@ -45,7 +45,7 @@ jobs:
         env:
           RLPORTAL_ACCESS_TOKEN: ${{ secrets.RLPORTAL_ACCESS_TOKEN }}
 
-        uses: maarten-boot/test-gh-action-rl-scanner-cloud-only-dev@v1.0.2
+        uses: maarten-boot/test-gh-action-rl-scanner-cloud-only-dev@v1.0.3
         with:
           rl-verbose: true
           rl-portal-server: guidedTour
@@ -55,7 +55,7 @@ jobs:
           rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
           rl-package-url: mboot/test-gh-action-only-dev@v1.0.2
-          rl-diff-with: v1.0.0
+          rl-diff-with: v1.0.2
 
       - name: report the scan status
         if: success() || failure()
