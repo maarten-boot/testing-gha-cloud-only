@@ -54,11 +54,12 @@ jobs:
           rl-portal-server: guidedTour
           rl-portal-org: ReversingLabs
           rl-portal-group: Demo
-          rl-timeout: 20
-          rl-submit-only: true
+          rl-timeout: 1
+          rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
-          rl-package-url: mboot/test-gh-action-only-dev@v1.0.0
-
+          rl-package-url: mboot/test-gh-action-only-dev@v1.0.2
+          rl-diff-with: v1.0.0
+          
       - name: verbose show Succ
         if: success()
         shell: bash
