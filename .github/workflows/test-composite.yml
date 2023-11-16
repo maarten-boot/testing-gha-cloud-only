@@ -49,4 +49,4 @@ jobs:
           rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
           rl-package-url: mboot/test-gh-action-only-dev@v998
-          # rl-diff-with: v999
+          rl-diff-with: v999
