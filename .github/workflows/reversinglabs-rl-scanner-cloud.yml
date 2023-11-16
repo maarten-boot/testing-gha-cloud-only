@@ -46,8 +46,7 @@ jobs:
         id: rl-scan
 
         env:
-          RLSECURE_ENCODED_LICENSE: ${{ secrets.RLSECURE_ENCODED_LICENSE }}
-          RLSECURE_SITE_KEY: ${{ secrets.RLSECURE_SITE_KEY }}
+          RLPORTAL_ACCESS_TOKEN: ${{ secrets.RLPORTAL_ACCESS_TOKEN }
 
         uses: maarten-boot/test-gh-action-rl-scanner-cloud-only-dev@v1.0.0
         with:
