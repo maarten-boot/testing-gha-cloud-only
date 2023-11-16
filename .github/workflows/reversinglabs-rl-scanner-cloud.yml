@@ -54,7 +54,7 @@ jobs:
           rl-timeout: 20
           rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
-          rl-package-url: mboot/test-gh-action-only-dev@v1.0.2
+          rl-package-url: mboot/test-gh-action-only-dev@v1.0.3
           rl-diff-with: v1.0.2
 
       - name: report the scan status
