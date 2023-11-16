@@ -1,0 +1,76 @@
+name: test scanner-cloud only
+run-name: test scanner-cloud only
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  ReportDirectory: MyReportDir
+
+jobs:
+  checkout-build-scan-simple:
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
+    permissions:
+      statuses: write
+      pull-requests: write
+
+    steps:
+      # -------------------------------------
+      # we will have to checkout data before we can do anything
+      - uses: actions/checkout@v3
+
+      # -------------------------------------
+      # build someting, replace this with your build process
+      # produces one filename as output in scanfile=<relative file path>
+      - name: Build
+        id: build
+
+        shell: bash
+
+        run: |
+          # prepare the build process
+          python3 -m pip install --upgrade pip
+          pip install hatchling
+          python3 -m pip install --upgrade build
+          # make the actual build
+          python3 -m build
+          # produce a single artifact to scan and set the scanfile output variable
+          echo "scanfile=$( ls dist/*.whl )" >> $GITHUB_OUTPUT
+
+      # -------------------------------------
+      - name: ReversingLabs apply rl-scanner to the build artifact
+        id: rl-scan
+
+        env:
+          RLSECURE_ENCODED_LICENSE: ${{ secrets.RLSECURE_ENCODED_LICENSE }}
+          RLSECURE_SITE_KEY: ${{ secrets.RLSECURE_SITE_KEY }}
+
+        uses: maarten-boot/test-gh-action-rl-scanner-cloud-only-dev@v1.0.0
+        with:
+          rl-verbose: true
+          rl-portal-server: guidedTour
+          rl-portal-org: ReversingLabs
+          rl-portal-group: Demo
+          rl-timeout: 20
+          rl-submit-only: false
+          artifact-to-scan: ${{ steps.build.outputs.scanfile }}
+          rl-package-url: mboot/test-gh-action-only-dev@v1.0.0
+
+      - name: verbose show Succ
+        if: success()
+        shell: bash
+        run: |
+          echo "SUCCESS"
+          ls -la
+
+      - name: verbose show report Fail
+        if: failure()
+        shell: bash
+        run: |
+          echo "FAILURE"
+          ls -la
+
