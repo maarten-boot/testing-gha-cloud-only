@@ -63,5 +63,5 @@ jobs:
       - name: report the scan status
         if: success() || failure()
         run: |
-          echo "The status is: '${{ steps.scan.outputs.status }}'"
-          echo "The description is: '${{ steps.scan.outputs.description }}'"
+          echo "The status is: '${{ steps.rl-scan.outputs.status }}'"
+          echo "The description is: '${{ steps.rl-scan.outputs.description }}'"
