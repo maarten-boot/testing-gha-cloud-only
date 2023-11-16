@@ -41,4 +41,12 @@ jobs:
           RLPORTAL_ACCESS_TOKEN: ${{ secrets.RLPORTAL_ACCESS_TOKEN }}
         uses: maarten-boot/test-gh-action-rl-scanner-cloud-composite-dev@v1.0.0
         with:
+          rl-verbose: true
+          rl-portal-server: guidedTour
+          rl-portal-org: ReversingLabs
+          rl-portal-group: Demo
+          rl-timeout: 20
+          rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
+          rl-package-url: mboot/test-gh-action-only-dev@v1.0.3
+          rl-diff-with: v1.0.2
