@@ -59,18 +59,9 @@ jobs:
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
           rl-package-url: mboot/test-gh-action-only-dev@v1.0.2
           rl-diff-with: v1.0.0
-          
-      - name: verbose show Succ
-        if: success()
-        shell: bash
-        run: |
-          echo "SUCCESS"
-          ls -la
 
-      - name: verbose show report Fail
-        if: failure()
-        shell: bash
+      - name: report the scan status
+        if: success() || failure()
         run: |
-          echo "FAILURE"
-          ls -la
-
+          echo "The status is: '${{ steps.scan.outputs.status }}'"
+          echo "The description is: '${{ steps.scan.outputs.description }}'"
