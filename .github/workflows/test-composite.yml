@@ -14,7 +14,11 @@ jobs:
     permissions:
       statuses: write
       pull-requests: write
-
+      # The next 3 permissions are used for SARIF report upload
+      security-events: write
+      actions: read
+      contents: read
+      
     steps:
       # Need to check out data before we can do anything
       - uses: actions/checkout@v3
