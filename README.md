@@ -11,3 +11,4 @@ tested: eicar: Fail
 tested: eicar with submit only: Pass
 tested: diff scan v1.0.2 versus v1.0.0
 tested: timout 1 -> results in info default 20 and bounds info
+zz
