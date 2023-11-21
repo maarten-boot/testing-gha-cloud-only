@@ -45,8 +45,8 @@ jobs:
         env:
           RLPORTAL_ACCESS_TOKEN: ${{ secrets.RLPORTAL_ACCESS_TOKEN }}
 
-        uses: maarten-boot/test-gh-action-rl-scanner-cloud-only-dev@v1.0.6
-        # uses: reversinglabs/gh-action-rl-scanner-cloud-only@v1
+        # uses: maarten-boot/test-gh-action-rl-scanner-cloud-only-dev@v1.0.6
+        uses: reversinglabs/gh-action-rl-scanner-cloud-only@v1
         with:
           rl-verbose: true
           rl-portal-server: guidedTour
