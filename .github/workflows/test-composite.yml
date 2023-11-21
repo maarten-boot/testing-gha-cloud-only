@@ -55,5 +55,5 @@ jobs:
           rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
           report-path: MyReportsDirectory
-          rl-package-url: mboot/test-gh-action-only-dev@v666
+          rl-package-url: mboot/test-gh-action-only-dev@v667
           # rl-diff-with: v999
