@@ -43,8 +43,6 @@ jobs:
         id: rl-scan
         env:
           RLPORTAL_ACCESS_TOKEN: ${{ secrets.RLPORTAL_ACCESS_TOKEN }}
-       
-        # uses: maarten-boot/test-gh-action-rl-scanner-cloud-composite-dev@v1.0.3
         uses: reversinglabs/gh-action-rl-scanner-cloud-composite@v1
         with:
           rl-verbose: true
@@ -55,5 +53,5 @@ jobs:
           rl-submit-only: false
           artifact-to-scan: ${{ steps.build.outputs.scanfile }}
           report-path: MyReportsDirectory
-          rl-package-url: mboot/test-gh-action-only-dev@v677
+          rl-package-url: mboot/test-gh-action-only-dev@v001
           # rl-diff-with: v999
